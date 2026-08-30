@@ -35,12 +35,12 @@ body {
   letter-spacing: -0.01em;
 }
 
-/* Chapter titles — AWARENESS, MOVEMENT… each fills the viewport */
-.text-chapter {
+/* Pillar names — AWARENESS, MOVEMENT… one compact row each */
+.text-pillar {
   font-family: var(--font-bebas), "Bebas Neue", sans-serif;
-  font-size: clamp(4rem, 14vw, 13rem);
-  line-height: 0.88;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1;
+  letter-spacing: 0.005em;
 }
 
 .text-label {
@@ -87,17 +87,6 @@ body {
   .reveal { opacity: 1; transform: none; transition: none; }
 }
 
-/* ── STATE SCROLL ANIMATION ──────────────────────────────────────────────── */
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(0.5em); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.state-word {
-  animation: slideUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-@media (prefers-reduced-motion: reduce) {
-  .state-word { animation: none; }
-}
 
 /* ── LINKS ───────────────────────────────────────────────────────────────── */
 .link-primary {
@@ -151,28 +140,89 @@ body {
 }
 
 /* ── HERO ────────────────────────────────────────────────────────────────── */
+/* Two columns: type left, image panel right. Never taller than the viewport. */
 .hero {
   position: relative;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: clamp(5rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem) clamp(3rem, 5vw, 4.5rem);
+  height: 100svh;
+  max-height: 100svh;
+  display: grid;
+  grid-template-columns: 1fr 42%;
   background: var(--ink);
   overflow: hidden;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(5rem, 8vw, 7rem) clamp(1.5rem, 4vw, 3.5rem) clamp(2.5rem, 5vw, 4rem);
+  min-width: 0;
+}
+
+.hero-panel {
+  position: relative;
+  overflow: hidden;
+  border-left: 1px solid var(--rule);
+}
+
+/* Photo sits quiet: desaturated, dark, with a fade into the copy column. */
+.hero-panel img {
+  object-fit: cover;
+  object-position: 44% 42%;
+  filter: grayscale(72%) brightness(0.62) contrast(1.08);
+}
+
+.hero-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, var(--ink) 0%, rgba(13,12,10,0.35) 22%, rgba(13,12,10,0.12) 60%),
+    linear-gradient(to top, rgba(13,12,10,0.7) 0%, transparent 45%);
+}
+
+/* Phone: image becomes a band under the type, not a side column. */
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 34svh;
+    height: auto;
+    min-height: 100svh;
+    max-height: none;
+  }
+  .hero-panel {
+    border-left: none;
+    border-top: 1px solid var(--rule);
+  }
+  .hero-panel::after {
+    background: linear-gradient(to bottom, var(--ink) 0%, rgba(13,12,10,0.2) 45%);
+  }
+  .hero-panel img { object-position: 55% 35%; }
 }
 
 /* ── SECTION PADDING ─────────────────────────────────────────────────────── */
 .section-pad { padding: clamp(3.5rem, 7vw, 6rem) clamp(1.5rem, 5vw, 4rem); }
 
-/* ── CHAPTER ─────────────────────────────────────────────────────────────── */
-.chapter-section {
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
+/* ── PILLARS ─────────────────────────────────────────────────────────────── */
+/* Four rows in ONE section. Number | name | description. */
+.pillar-row {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(9rem, 14rem) 1fr;
+  align-items: baseline;
+  gap: clamp(0.75rem, 2vw, 2rem);
+  padding: clamp(1.5rem, 3vw, 2.25rem) 0;
   border-top: 1px solid var(--rule);
+}
+.pillar-row:last-child { border-bottom: 1px solid var(--rule); }
+
+@media (max-width: 720px) {
+  .pillar-row {
+    grid-template-columns: 3rem 1fr;
+    align-items: start;
+    row-gap: 0.5rem;
+  }
+  /* description drops to a full-width second line, indented past the number */
+  .pillar-row > :nth-child(3) { grid-column: 2 / -1; }
 }
 
 /* ── MOBILE STICKY BAR ───────────────────────────────────────────────────── */
