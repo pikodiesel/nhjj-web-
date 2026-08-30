@@ -1,8 +1,26 @@
 import Image from "next/image";
 
-// Drop photos into public/gallery/ and add filenames here
 const galleryPhotos: { src: string; alt: string }[] = [
-  // { src: "/gallery/photo1.jpg", alt: "Class in action" },
+  { src: "/gallery/20130721_084418.jpg", alt: "NHJJ Hawaii training" },
+  { src: "/gallery/20130721_091544.jpg", alt: "NHJJ Hawaii training" },
+  { src: "/gallery/20130721_103421.jpg", alt: "NHJJ Hawaii training" },
+  { src: "/gallery/20170308_180204.jpg", alt: "NHJJ Hawaii class" },
+  { src: "/gallery/20170308_183705.jpg", alt: "NHJJ Hawaii class" },
+  { src: "/gallery/20170308_184028.jpg", alt: "NHJJ Hawaii class" },
+  { src: "/gallery/20170308_184440.jpg", alt: "NHJJ Hawaii class" },
+  { src: "/gallery/20170308_185206.jpg", alt: "NHJJ Hawaii class" },
+  { src: "/gallery/20170705_185148.jpg", alt: "NHJJ Hawaii community" },
+  { src: "/gallery/20170705_185406.jpg", alt: "NHJJ Hawaii community" },
+  { src: "/gallery/20170705_185427.jpg", alt: "NHJJ Hawaii community" },
+  { src: "/gallery/20170705_202023.jpg", alt: "NHJJ Hawaii community" },
+  { src: "/gallery/5X9A2133.jpg", alt: "NHJJ Hawaii training" },
+  { src: "/gallery/DSC_2911.JPG", alt: "NHJJ Hawaii on the mat" },
+  { src: "/gallery/DSC_2913.JPG", alt: "NHJJ Hawaii on the mat" },
+  { src: "/gallery/DSC_2939.JPG", alt: "NHJJ Hawaii on the mat" },
+  { src: "/gallery/DSC_2979.JPG", alt: "NHJJ Hawaii on the mat" },
+  { src: "/gallery/IMG_0429.JPG", alt: "NHJJ Hawaii" },
+  { src: "/gallery/IMG_13140358066854.jpeg", alt: "NHJJ Hawaii" },
+  { src: "/gallery/flyer pic.jpg", alt: "NHJJ Hawaii" },
 ];
 
 const pillars = [
