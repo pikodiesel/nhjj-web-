@@ -261,6 +261,11 @@ body {
   text-shadow: 0 0 60px rgba(16, 222, 197, 0.28);
 }
 
+/* FREE is the offer — it gets to be the biggest word on the page */
+.hero-word--lead {
+  font-size: clamp(3rem, min(38vw, 29vh), 24rem);
+}
+
 .hero-logo {
   width: clamp(170px, min(30vw, 30vh), 430px);
   height: auto;
@@ -290,6 +295,7 @@ body {
 
 @media (max-width: 700px) {
   .hero-word { font-size: clamp(2.5rem, min(34vw, 20vh), 9rem); }
+  .hero-word--lead { font-size: clamp(3rem, min(52vw, 26vh), 12rem); }
   .hero-stack { padding-top: 4.5rem; padding-bottom: 5.25rem; }
   /* the sticky bar already carries time/place/free — don't collide with it */
   .hero-meta { display: none; }

@@ -115,7 +115,7 @@ export default function Home() {
         <div className="hero-grain" aria-hidden style={{ backgroundImage: GRAIN }} />
 
         <div className="hero-stack">
-          <p className="hero-word" aria-hidden>Jiu-Jitsu</p>
+          <p className="hero-word hero-word--lead" aria-hidden>Free</p>
 
           {/* The logo carries the name, so the h1 is visually hidden text */}
           <h1 style={{ margin: 0, lineHeight: 0 }}>
@@ -133,13 +133,75 @@ export default function Home() {
         </div>
 
         <div className="hero-meta">
+          <span style={{ color: "var(--accent)", fontWeight: 600 }}>Always free</span>
+          <span style={{ color: "var(--accent)" }}>&bull;</span>
           <span>2:30&ndash;4:30 PM</span>
           <span style={{ color: "var(--accent)" }}>&bull;</span>
           <span>Waipahu, Oahu</span>
           <span style={{ color: "var(--accent)" }}>&bull;</span>
-          <span>Every class free</span>
-          <span style={{ color: "var(--accent)" }}>&bull;</span>
-          <span>All ages</span>
+          <span>All ages, no experience</span>
+        </div>
+      </section>
+
+      {/* WHAT THIS IS — the first thing a stranger should read */}
+      <section className="section-pad glow-violet glow">
+        <div style={{ maxWidth: "46rem" }}>
+          <Reveal>
+            <h2
+              className="font-display"
+              style={{ fontSize: "clamp(2.25rem,6vw,4.25rem)", lineHeight: 0.95, marginBottom: "1.75rem" }}
+            >
+              <span style={{ color: "var(--accent)" }}>Always free.</span>
+              <br />
+              <span style={{ color: "var(--bone)" }}>Every Sunday.</span>
+            </h2>
+          </Reveal>
+
+          <Reveal delay={1}>
+            <p
+              style={{
+                fontFamily: "var(--font-barlow)",
+                fontSize: "clamp(1.15rem,2.1vw,1.6rem)",
+                fontWeight: 300,
+                lineHeight: 1.55,
+                color: "var(--bone)",
+                marginBottom: "1.5rem",
+              }}
+            >
+              Come move your body, learn to pay attention, and train real jiu-jitsu.
+            </p>
+          </Reveal>
+
+          <Reveal delay={2}>
+            <p className="text-body" style={{ marginBottom: "1rem" }}>
+              We start with movement — getting stronger and more comfortable in how you
+              carry yourself. That builds awareness of what is going on around you, which
+              is where self-defense actually begins. Then we put it together on the mat.
+            </p>
+            <p className="text-body">
+              Anyone can walk in. You do not need to be fit, young, or have done anything
+              like this before.
+            </p>
+          </Reveal>
+
+          <Reveal delay={3}>
+            <p
+              style={{
+                marginTop: "2rem",
+                paddingLeft: "1.1rem",
+                borderLeft: "2px solid var(--accent)",
+                fontFamily: "var(--font-barlow)",
+                fontSize: "clamp(1rem,1.6vw,1.25rem)",
+                fontWeight: 500,
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+                color: "var(--accent)",
+                lineHeight: 1.5,
+              }}
+            >
+              No experience. No gi. No cost, ever.
+            </p>
+          </Reveal>
         </div>
       </section>
 
