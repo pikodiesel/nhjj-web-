@@ -174,9 +174,10 @@ export default function Home() {
 
           <Reveal delay={2}>
             <p className="text-body" style={{ marginBottom: "1rem" }}>
-              We start with movement — getting stronger and more comfortable in how you
-              carry yourself. That builds awareness of what is going on around you, which
-              is where self-defense actually begins. Then we put it together on the mat.
+              We don&rsquo;t separate it. Movement gets you comfortable in your body.
+              Awareness is paying attention before you need to. Jiu-jitsu puts both on the
+              mat. Self-defense is the same thing, under pressure. Show up Sunday.
+              We&rsquo;ll start from where you are.
             </p>
             <p className="text-body">
               Anyone can walk in. You do not need to be fit, young, or have done anything
