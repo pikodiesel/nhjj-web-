@@ -6,6 +6,9 @@ import { getThisSunday } from "@/lib/this-sunday"
 const INSTAGRAM = "nhjjhawaii"
 const MAPS = "https://maps.google.com/?q=94-199+Leonui+St+%234,+Waipahu,+HI+96797"
 
+const GRAIN =
+  "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")"
+
 const pillars = [
   { n: "01", name: "Awareness", desc: "Read the room. Notice before you move. Most situations are decided before the first hand is raised." },
   { n: "02", name: "Movement", desc: "Your body is a tool. Coordination, balance, and the ability to move with intention under pressure." },
@@ -20,7 +23,7 @@ function SundayBlock() {
   return (
     <section
       id="this-sunday"
-      className="section-pad"
+      className="section-pad glow"
       style={{ borderTop: "1px solid var(--accent)", background: "var(--ink-2)" }}
     >
       <Reveal>
@@ -96,34 +99,47 @@ export default function Home() {
         <a href="#this-sunday" className="link-primary">This Sunday &darr;</a>
       </nav>
 
-      {/* HERO — type left, real photo right */}
+      {/* HERO — photo, coloured light, oversized type, logo on top */}
       <section className="hero">
-        <div className="hero-copy">
-          <h1 className="text-hero" style={{ color: "var(--bone)" }}>
-            New Hope
-            <br />Jiu-Jitsu
-            <br /><span style={{ color: "var(--accent)" }}>Hawaii</span>
-          </h1>
-          <p className="hero-pillars" style={{ marginTop: "1.5rem" }}>
-            Awareness &middot; Movement &middot; Jujitsu &middot; Self-Defense
-          </p>
-          <p style={{ fontFamily: "var(--font-barlow)", fontSize: "clamp(0.75rem,1.1vw,0.9rem)", fontWeight: 300, letterSpacing: "0.1em", color: "var(--bone-3)", marginTop: "0.9rem", textTransform: "uppercase" }}>
-            Sundays 2:30&ndash;4:30 PM &middot; Waipahu &middot; Free &middot; All ages
-          </p>
-          <div style={{ display: "flex", gap: "2rem", marginTop: "1.75rem", flexWrap: "wrap" }}>
-            <a href="#this-sunday" className="link-primary">This Sunday &darr;</a>
-            <a href={`https://instagram.com/${INSTAGRAM}`} target="_blank" rel="noopener noreferrer" className="link-accent">Instagram &rarr;</a>
-          </div>
-        </div>
-
-        <div className="hero-panel">
+        <div className="hero-photo">
           <Image
-            src="/gallery/20170308_184440.jpg"
-            alt="Partners drilling a wrist escape during Sunday class in Waipahu"
+            src="/gallery/5X9A2133.jpg"
+            alt="The Sunday class standing in a circle, arms around each other, after training"
             fill
             priority
-            sizes="(max-width: 860px) 100vw, 42vw"
+            sizes="100vw"
           />
+        </div>
+        <div className="hero-wash" aria-hidden />
+        <div className="hero-vignette" aria-hidden />
+        <div className="hero-grain" aria-hidden style={{ backgroundImage: GRAIN }} />
+
+        <div className="hero-stack">
+          <p className="hero-word" aria-hidden>Jiu-Jitsu</p>
+
+          {/* The logo carries the name, so the h1 is visually hidden text */}
+          <h1 style={{ margin: 0, lineHeight: 0 }}>
+            <Image
+              className="hero-logo"
+              src="/nhjj-logo.png"
+              alt="NHJJ Hawaii — New Hope Jiu-Jitsu"
+              width={1264}
+              height={1264}
+              priority
+            />
+          </h1>
+
+          <p className="hero-word" aria-hidden>Sundays</p>
+        </div>
+
+        <div className="hero-meta">
+          <span>2:30&ndash;4:30 PM</span>
+          <span style={{ color: "var(--accent)" }}>&bull;</span>
+          <span>Waipahu, Oahu</span>
+          <span style={{ color: "var(--accent)" }}>&bull;</span>
+          <span>Every class free</span>
+          <span style={{ color: "var(--accent)" }}>&bull;</span>
+          <span>All ages</span>
         </div>
       </section>
 
@@ -131,7 +147,7 @@ export default function Home() {
       <SundayBlock />
 
       {/* PILLARS — four compact rows, one section */}
-      <section className="section-pad">
+      <section id="train" className="section-pad glow">
         <Reveal>
           <p className="text-label" style={{ marginBottom: "clamp(1.25rem,3vw,2rem)" }}>What we train</p>
         </Reveal>
@@ -145,7 +161,7 @@ export default function Home() {
       </section>
 
       {/* ABOUT — copy left, community photo right */}
-      <section className="section-pad" style={{ borderTop: "1px solid var(--rule)" }}>
+      <section id="about" className="section-pad glow-violet glow" style={{ borderTop: "1px solid var(--rule)" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: "clamp(2rem,5vw,4rem)", alignItems: "center" }}>
           <div>
             <Reveal>
@@ -213,6 +229,16 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
+
+      {/* BRAND BAND — the banner lockup, full bleed, as the sign-off */}
+      <div className="banner-band">
+        <Image
+          src="/nhjj-banner.png"
+          alt="NHJJ Hawaii — Awareness, Movement, Jujitsu, Self-Defense"
+          fill
+          sizes="100vw"
+        />
+      </div>
 
       {/* FOOTER */}
       <footer style={{ borderTop: "1px solid var(--rule)", padding: "clamp(2.25rem,4vw,3.25rem) clamp(1.5rem,5vw,4rem) clamp(5rem,6vw,3.25rem)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(170px,1fr))", gap: "1.75rem 3rem" }}>

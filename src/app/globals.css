@@ -4,12 +4,13 @@
 /* Charcoal ground, mint accent, bone type. Accent is the jiu-jitsu color:
    edges, labels, and the Sunday status — never a wash over everything. */
 :root {
-  --ink:      #262626;  /* charcoal ground */
-  --ink-2:    #212121;  /* slightly darker band (This Sunday) */
+  --ink:      #0b0b10;  /* near-black ground, faint cool cast */
+  --ink-2:    #101017;  /* lifted band (This Sunday) */
   --bone:     #f4f1ea;
-  --bone-2:   #ada89e;  /* body copy */
-  --bone-3:   #8f8b82;  /* labels, meta */
+  --bone-2:   #a9a4ad;  /* body copy */
+  --bone-3:   #7d7987;  /* labels, meta */
   --accent:   #10dec5;  /* mint */
+  --violet:   #9e36e0;  /* counter-light, washes only — never type */
   --rule:     rgba(16,222,197,0.22);
 }
 
@@ -29,24 +30,6 @@ body {
 
 /* ── TYPOGRAPHY ──────────────────────────────────────────────────────────── */
 .font-display { font-family: var(--font-bebas), "Bebas Neue", sans-serif; }
-
-/* Hero headline — the name: NEW HOPE / JIU-JITSU / HAWAII */
-.text-hero {
-  font-family: var(--font-bebas), "Bebas Neue", sans-serif;
-  font-size: clamp(2.75rem, 8vw, 7rem);
-  line-height: 0.9;
-  letter-spacing: -0.005em;
-}
-
-/* Pillar list under the name — mint, one of the accent moments */
-.hero-pillars {
-  font-family: var(--font-barlow), sans-serif;
-  font-size: clamp(0.68rem, 1vw, 0.82rem);
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
 
 /* Pillar names — AWARENESS, MOVEMENT… one compact row each */
 .text-pillar {
@@ -197,69 +180,159 @@ body {
 }
 
 /* ── HERO ────────────────────────────────────────────────────────────────── */
-/* Two columns: type left, image panel right. Never taller than the viewport. */
+/* Layered like the reference: photo -> coloured light -> oversized type ->
+   logo on top. Everything stacked in one full-viewport frame. */
 .hero {
   position: relative;
   height: 100svh;
   max-height: 100svh;
-  display: grid;
-  grid-template-columns: 1fr 42%;
   background: var(--ink);
   overflow: hidden;
+  isolation: isolate;
 }
 
-.hero-copy {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: clamp(5rem, 8vw, 7rem) clamp(1.5rem, 4vw, 3.5rem) clamp(2.5rem, 5vw, 4rem);
-  min-width: 0;
-}
-
-.hero-panel {
-  position: relative;
-  overflow: hidden;
-  border-left: 1px solid var(--rule);
-}
-
-/* Photo graded onto charcoal — pulled down and partly desaturated, but not
-   washed to gray soup. Mint never tints the people. */
-.hero-panel img {
+/* 1 — the room, pushed way down so it reads as atmosphere, not a snapshot.
+   White gis blow out fast, so this is graded hard and then scrimmed. */
+.hero-photo { position: absolute; inset: 0; z-index: 0; }
+.hero-photo img {
   object-fit: cover;
-  object-position: 44% 42%;
-  filter: grayscale(42%) saturate(0.9) brightness(0.74) contrast(1.04);
+  object-position: 50% 42%;
+  filter: grayscale(72%) brightness(0.42) contrast(1.32);
 }
-
-.hero-panel::after {
+/* solid scrim: gives the coloured light genuine black to sit on, while the
+   circle of people stays readable underneath it */
+.hero-photo::after {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(to right, var(--ink) 0%, rgba(38,38,38,0.34) 22%, rgba(38,38,38,0.08) 60%),
-    linear-gradient(to top, rgba(38,38,38,0.62) 0%, transparent 45%);
+  background: rgba(8, 8, 14, 0.28);
 }
 
-/* Phone: image becomes a band under the type, not a side column. */
-@media (max-width: 860px) {
-  .hero {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 34svh;
-    height: auto;
-    min-height: 100svh;
-    max-height: none;
-  }
-  .hero-panel {
-    border-left: none;
-    border-top: 1px solid var(--rule);
-  }
-  .hero-panel::after {
-    background: linear-gradient(to bottom, var(--ink) 0%, rgba(38,38,38,0.18) 45%);
-  }
-  .hero-panel img { object-position: 55% 35%; }
+/* 2 — stage lighting: mint from one side, violet from the other */
+.hero-wash {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(50% 46% at 14% 20%, rgba(16,222,197,0.26), transparent 72%),
+    radial-gradient(52% 48% at 88% 70%, rgba(158,54,224,0.44), transparent 72%),
+    radial-gradient(70% 50% at 52% 108%, rgba(41,121,255,0.24), transparent 70%);
+}
+
+/* 3 — vignette so the type always has ground to sit on */
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(118% 85% at 50% 46%, transparent 26%, rgba(5,5,9,0.90) 100%);
+}
+
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  opacity: 0.05;
+  background-size: 200px 200px;
+}
+
+/* 4 — the stack: giant word, logo, giant word */
+.hero-stack {
+  position: relative;
+  z-index: 4;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(4.5rem, 9vh, 7rem) 1rem clamp(3.5rem, 7vh, 5.5rem);
+  text-align: center;
+}
+
+/* Oversized display type, tight and wide — the signature of the reference */
+.hero-word {
+  font-family: var(--font-bebas), "Bebas Neue", sans-serif;
+  /* height-aware: two words + the logo must fit one viewport on any shape */
+  font-size: clamp(2.5rem, min(27vw, 23vh), 18rem);
+  line-height: 0.78;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  white-space: nowrap;
+  text-shadow: 0 0 60px rgba(16, 222, 197, 0.28);
+}
+
+.hero-logo {
+  width: clamp(170px, min(30vw, 30vh), 430px);
+  height: auto;
+  filter: drop-shadow(0 12px 44px rgba(0, 0, 0, 0.72));
+}
+
+/* Bottom strip: the practical facts, over the photo */
+.hero-meta {
+  position: absolute;
+  z-index: 5;
+  left: 0;
+  right: 0;
+  bottom: clamp(1rem, 2.5vh, 1.75rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.75rem, 3vw, 2.25rem);
+  flex-wrap: wrap;
+  padding: 0 1.25rem;
+  font-family: var(--font-barlow), sans-serif;
+  font-size: clamp(0.65rem, 1.05vw, 0.82rem);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bone-2);
+}
+
+@media (max-width: 700px) {
+  .hero-word { font-size: clamp(2.5rem, min(34vw, 20vh), 9rem); }
+  .hero-stack { padding-top: 4.5rem; padding-bottom: 5.25rem; }
+  /* the sticky bar already carries time/place/free — don't collide with it */
+  .hero-meta { display: none; }
 }
 
 /* ── SECTION PADDING ─────────────────────────────────────────────────────── */
 .section-pad { padding: clamp(3.5rem, 7vw, 6rem) clamp(1.5rem, 5vw, 4rem); }
+
+/* Ambient colour so the lower page never reads as a flat field. Sits behind
+   content, low enough that copy contrast is untouched. */
+.glow {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(48% 60% at 6% 0%, rgba(16,222,197,0.14), transparent 68%),
+    radial-gradient(46% 62% at 96% 88%, rgba(158,54,224,0.16), transparent 70%);
+}
+.glow-violet::before {
+  background:
+    radial-gradient(50% 62% at 92% 8%, rgba(158,54,224,0.17), transparent 70%),
+    radial-gradient(44% 58% at 4% 92%, rgba(16,222,197,0.11), transparent 68%);
+}
+
+/* ── BRAND BANNER BAND ───────────────────────────────────────────────────── */
+.banner-band {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5 / 2;
+  max-height: 46svh;
+  overflow: hidden;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  background: #000;
+}
+.banner-band img { object-fit: cover; object-position: center; }
 
 /* ── PILLARS ─────────────────────────────────────────────────────────────── */
 /* Four rows in ONE section. Number | name | description. */
