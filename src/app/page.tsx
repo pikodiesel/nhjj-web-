@@ -116,7 +116,7 @@ export default function Home() {
           style={{ color: "#8aa0b8", fontFamily: "var(--font-barlow)" }}
         >
           New Hope Jiu-Jitsu Hawaii — real skills for all ages and skill levels.
-          <br />First class is free. All are welcome.
+          <br />Every class is free. All are welcome.
         </p>
         <div className="fade-up-3 relative z-10 flex flex-col sm:flex-row gap-4 mt-8">
           <a
@@ -185,7 +185,7 @@ export default function Home() {
         </p>
         <p className="text-base sm:text-lg leading-relaxed" style={{ color: "#8aa0b8", fontFamily: "var(--font-barlow)" }}>
           Based in Waipahu, Oahu, we train in the spirit of aloha — with intensity on the mat and warmth off of it.
-          All ages and skill levels welcome. Your first class is free.
+          All ages and skill levels welcome. Every class is free.
         </p>
       </section>
 
@@ -291,11 +291,11 @@ export default function Home() {
           Get Started
         </p>
         <h2 className="text-3xl sm:text-5xl font-bold uppercase tracking-widest mb-6" style={{ fontFamily: "var(--font-rajdhani)", color: "#f0f8ff" }}>
-          Your First Class is <span style={{ color: "#00b4ff" }}>Free</span>
+          Every Class is <span style={{ color: "#00b4ff" }}>Free</span>
         </h2>
         <p className="max-w-xl mx-auto text-base sm:text-lg mb-10" style={{ color: "#8aa0b8", fontFamily: "var(--font-barlow)" }}>
           No experience needed. Just show up ready to learn.
-          Reach out and we&apos;ll get you on the mat — Sundays 2:30–4:30 PM, Waipahu.
+          Every class is free — just show up. Sundays 2:30–4:30 PM in Waipahu.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-6 text-sm font-semibold tracking-widest uppercase" style={{ fontFamily: "var(--font-barlow)" }}>
           <a
