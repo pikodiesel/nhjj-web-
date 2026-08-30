@@ -1,39 +1,189 @@
 @import "tailwindcss";
 
+/* ── TOKENS ──────────────────────────────────────────────────────────────── */
 :root {
-  --bg: #060c14;
-  --cyan: #00b4ff;
-  --cyan-dark: #0077cc;
-  --white: #f0f8ff;
-  --gray: #8aa0b8;
+  --ink:      #0d0c0a;
+  --bone:     #ede8df;
+  --bone-2:   #908a80;
+  --bone-3:   #524e48;
+  --accent:   #2a5f7a;
+  --rule:     rgba(237,232,223,0.07);
 }
 
-@theme inline {
-  --color-bg: var(--bg);
-  --color-cyan: var(--cyan);
-  --color-cyan-dark: var(--cyan-dark);
-  --color-white: var(--white);
-  --color-gray: var(--gray);
-  --font-sans: var(--font-barlow);
-  --font-display: var(--font-rajdhani);
-}
+/* ── BASE ────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg);
-  color: var(--white);
-  font-family: var(--font-sans), sans-serif;
+  background: var(--ink);
+  color: var(--bone);
+  font-family: var(--font-barlow), "Barlow Condensed", sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-@keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(0,180,255,0.3); }
-  50%       { box-shadow: 0 0 40px rgba(0,180,255,0.6); }
-}
-.glow-pulse { animation: glow-pulse 2.5s ease-in-out infinite; }
+/* ── TYPOGRAPHY ──────────────────────────────────────────────────────────── */
+.font-display { font-family: var(--font-bebas), "Bebas Neue", sans-serif; }
 
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* Hero headline — three-line "A Sunday / ministry / on the mat." */
+.text-hero {
+  font-family: var(--font-bebas), "Bebas Neue", sans-serif;
+  font-size: clamp(3.25rem, 11vw, 9.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
 }
-.fade-up { animation: fade-up 0.7s ease both; }
-.fade-up-2 { animation: fade-up 0.7s 0.15s ease both; }
-.fade-up-3 { animation: fade-up 0.7s 0.3s ease both; }
+
+/* Chapter titles — AWARENESS, MOVEMENT… each fills the viewport */
+.text-chapter {
+  font-family: var(--font-bebas), "Bebas Neue", sans-serif;
+  font-size: clamp(4rem, 14vw, 13rem);
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+}
+
+.text-label {
+  font-family: var(--font-barlow), sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bone-2);
+}
+
+.text-body {
+  font-family: var(--font-barlow), sans-serif;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  font-weight: 300;
+  line-height: 1.75;
+  letter-spacing: 0.015em;
+  color: var(--bone-2);
+}
+
+.text-meta {
+  font-family: var(--font-barlow), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bone-3);
+}
+
+/* ── SCROLL REVEAL ───────────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity  0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.in     { opacity: 1; transform: none; }
+.delay-1       { transition-delay: 0.1s; }
+.delay-2       { transition-delay: 0.22s; }
+.delay-3       { transition-delay: 0.38s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ── LINKS ───────────────────────────────────────────────────────────────── */
+.link-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--font-barlow), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bone);
+  text-decoration: none;
+  border-bottom: 1px solid var(--bone-3);
+  padding-bottom: 2px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.link-primary:hover { border-color: var(--bone); }
+
+.link-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--font-barlow), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+.link-accent:hover { opacity: 1; }
+
+/* ── RULE ────────────────────────────────────────────────────────────────── */
+.h-rule { width: 100%; height: 1px; background: var(--rule); }
+
+/* ── NAV ─────────────────────────────────────────────────────────────────── */
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem clamp(1.5rem, 5vw, 4rem);
+  mix-blend-mode: normal;
+}
+
+/* ── HERO ────────────────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(6rem, 10vw, 8rem) clamp(1.5rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem);
+  background: radial-gradient(ellipse at 40% 50%, #141210 0%, var(--ink) 70%);
+  overflow: hidden;
+}
+
+/* ── SECTION PADDING ─────────────────────────────────────────────────────── */
+.section-pad { padding: clamp(5rem, 9vw, 8rem) clamp(1.5rem, 5vw, 4rem); }
+
+/* ── SUNDAY BLOCK ────────────────────────────────────────────────────────── */
+.sunday-card {
+  border: 1px solid var(--rule);
+  border-top: 1px solid var(--bone-3);
+  padding: clamp(2rem, 4vw, 3.5rem);
+  max-width: 52rem;
+}
+
+/* ── CHAPTER ─────────────────────────────────────────────────────────────── */
+.chapter-section {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
+  border-top: 1px solid var(--rule);
+}
+
+/* ── MOBILE STICKY BAR ───────────────────────────────────────────────────── */
+.sticky-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.25rem;
+  background: var(--ink);
+  border-top: 1px solid var(--rule);
+}
+@media (min-width: 768px) { .sticky-bar { display: none; } }

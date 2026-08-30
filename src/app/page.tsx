@@ -1,344 +1,246 @@
-import Image from "next/image";
+import Image from "next/image"
+import Reveal from "./components/Reveal"
+import { thisSunday } from "@/content/this-sunday"
 
-const galleryPhotos: { src: string; alt: string }[] = [
-  { src: "/gallery/20130721_084418.jpg", alt: "NHJJ Hawaii training" },
-  { src: "/gallery/20130721_091544.jpg", alt: "NHJJ Hawaii training" },
-  { src: "/gallery/20130721_103421.jpg", alt: "NHJJ Hawaii training" },
-  { src: "/gallery/20170308_180204.jpg", alt: "NHJJ Hawaii class" },
-  { src: "/gallery/20170308_183705.jpg", alt: "NHJJ Hawaii class" },
-  { src: "/gallery/20170308_184028.jpg", alt: "NHJJ Hawaii class" },
-  { src: "/gallery/20170308_184440.jpg", alt: "NHJJ Hawaii class" },
-  { src: "/gallery/20170308_185206.jpg", alt: "NHJJ Hawaii class" },
-  { src: "/gallery/20170705_185148.jpg", alt: "NHJJ Hawaii community" },
-  { src: "/gallery/20170705_185406.jpg", alt: "NHJJ Hawaii community" },
-  { src: "/gallery/20170705_185427.jpg", alt: "NHJJ Hawaii community" },
-  { src: "/gallery/20170705_202023.jpg", alt: "NHJJ Hawaii community" },
-  { src: "/gallery/5X9A2133.jpg", alt: "NHJJ Hawaii training" },
-  { src: "/gallery/DSC_2911.JPG", alt: "NHJJ Hawaii on the mat" },
-  { src: "/gallery/DSC_2913.JPG", alt: "NHJJ Hawaii on the mat" },
-  { src: "/gallery/DSC_2939.JPG", alt: "NHJJ Hawaii on the mat" },
-  { src: "/gallery/DSC_2979.JPG", alt: "NHJJ Hawaii on the mat" },
-  { src: "/gallery/IMG_0429.JPG", alt: "NHJJ Hawaii" },
-  { src: "/gallery/IMG_13140358066854.jpeg", alt: "NHJJ Hawaii" },
-  { src: "/gallery/flyer pic.jpg", alt: "NHJJ Hawaii" },
-];
+const INSTAGRAM = "nhjjhawaii"
+const EMAIL_TODO = "TODO — add email here"
 
-const pillars = [
+const chapters = [
   {
-    title: "Awareness",
-    icon: "👁",
-    desc: "Read the room before anything else. Situational awareness is the foundation of real safety.",
+    n: "01",
+    state: "Still",
+    pillar: "Awareness",
+    desc: "Read the room. Notice before you move. Most situations are decided before the first hand is raised.",
   },
   {
-    title: "Movement",
-    icon: "🌀",
-    desc: "Your body is a tool. We develop coordination, balance, and the ability to move under pressure.",
+    n: "02",
+    state: "Aware",
+    pillar: "Movement",
+    desc: "Your body is a tool. We train coordination, balance, and the ability to move with intention under pressure.",
   },
   {
-    title: "Jujitsu",
-    icon: "🥋",
-    desc: "Brazilian Jiu-Jitsu technique for all levels — from day one to competition ready.",
+    n: "03",
+    state: "Mobile",
+    pillar: "Jujitsu",
+    desc: "The mat teaches what the classroom cannot. Brazilian Jiu-Jitsu for all levels — day one through competition ready.",
   },
   {
-    title: "Self-Defense",
-    icon: "🛡",
-    desc: "Practical skills that work in real situations. No theatrics — just what actually works.",
+    n: "04",
+    state: "Capable",
+    pillar: "Self-Defense",
+    desc: "Practical skill. No theatrics. What holds up when the situation is real and the adrenaline is high.",
   },
-];
+]
+
+function SundayStatus() {
+  const { date, status, teaching, note } = thisSunday
+  const isOn = status === "on"
+
+  return (
+    <section id="this-sunday" className="section-pad" style={{ borderTop: "1px solid var(--rule)" }}>
+      <div className="sunday-card">
+        <Reveal>
+          <p className="text-label" style={{ marginBottom: "1.5rem" }}>This Sunday</p>
+        </Reveal>
+        <Reveal delay={1}>
+          <p className="font-display" style={{ fontSize: "clamp(2rem,6vw,4.5rem)", lineHeight: 0.9, color: "var(--bone)", marginBottom: "1.75rem" }}>
+            {date}
+          </p>
+        </Reveal>
+        {!isOn && (
+          <Reveal delay={2}>
+            <p className="font-display" style={{ fontSize: "clamp(2rem,5vw,3.5rem)", color: "var(--accent)", letterSpacing: "0.04em", marginBottom: "1rem" }}>
+              {status === "cancelled" ? "Cancelled" : "No Class"}
+            </p>
+            <p className="text-body">No class this week. See you next Sunday.</p>
+          </Reveal>
+        )}
+        {isOn && (
+          <Reveal delay={2}>
+            <p className="text-label" style={{ marginBottom: "0.5rem" }}>On the mat this week</p>
+            <p style={{ fontFamily: "var(--font-barlow)", fontSize: "clamp(1.05rem,1.6vw,1.35rem)", fontWeight: 300, lineHeight: 1.65, color: "var(--bone)", marginBottom: note ? "1.25rem" : 0, letterSpacing: "0.01em" }}>
+              {teaching}
+            </p>
+            {note && <p className="text-body">{note}</p>}
+          </Reveal>
+        )}
+        <Reveal delay={3}>
+          <div style={{ marginTop: "2rem", display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
+            <a href="https://maps.google.com/?q=94-199+Leonui+St+%234,+Waipahu,+HI+96797" target="_blank" rel="noopener noreferrer" className="link-primary">
+              Get directions &rarr;
+            </a>
+            <a href={`https://instagram.com/${INSTAGRAM}`} target="_blank" rel="noopener noreferrer" className="link-accent">
+              @{INSTAGRAM} &rarr;
+            </a>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
 
 export default function Home() {
   return (
     <>
       {/* NAV */}
-      <nav
-        className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-6 py-3"
-        style={{
-          background: "rgba(6,12,20,0.9)",
-          backdropFilter: "blur(12px)",
-          borderBottom: "1px solid rgba(0,180,255,0.12)",
-        }}
-      >
-        <div className="flex items-center gap-3">
-          <Image src="/nhjj-icon.png" alt="NHJJ Hawaii" width={44} height={44} className="rounded-full" />
-          <span className="font-bold tracking-widest uppercase text-sm" style={{ color: "#00b4ff", fontFamily: "var(--font-rajdhani)" }}>
-            NHJJ Hawaii
-          </span>
+      <nav className="nav">
+        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+          <Image src="/nhjj-icon.png" alt="NHJJ Hawaii" width={30} height={30} style={{ borderRadius: "50%", opacity: 0.85 }} />
+          <span className="text-label" style={{ color: "var(--bone)", letterSpacing: "0.14em" }}>NHJJ Hawaii</span>
         </div>
-        <div className="hidden md:flex items-center gap-8 text-xs tracking-widest uppercase font-semibold" style={{ color: "#8aa0b8", fontFamily: "var(--font-barlow)" }}>
-          <a href="#pillars" className="hover:text-white transition-colors">Pillars</a>
-          <a href="#schedule" className="hover:text-white transition-colors">Schedule</a>
-          <a href="#about" className="hover:text-white transition-colors">About</a>
-          <a href="#contact" className="hover:text-white transition-colors">Contact</a>
-        </div>
-        <a
-          href="#contact"
-          className="glow-pulse text-xs font-bold tracking-widest uppercase px-5 py-2 rounded-full transition-all hover:brightness-110"
-          style={{ background: "linear-gradient(135deg,#00b4ff,#0066cc)", color: "#fff", fontFamily: "var(--font-barlow)" }}
-        >
-          Free Class
-        </a>
+        <a href="#this-sunday" className="link-primary">This Sunday &darr;</a>
       </nav>
 
       {/* HERO */}
-      <section
-        className="relative flex flex-col items-center justify-center text-center min-h-screen pt-20 overflow-hidden"
-        style={{ background: "linear-gradient(180deg,#060c14 0%,#071222 60%,#060c14 100%)" }}
-      >
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: "linear-gradient(rgba(0,180,255,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(0,180,255,.4) 1px,transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
-
-        <div className="relative z-10 fade-up mb-6">
-          <Image
-            src="/nhjj-hero.png"
-            alt="NHJJ Hawaii — New Hope Jiu-Jitsu"
-            width={520}
-            height={520}
-            className="w-72 sm:w-96 md:w-[520px] drop-shadow-2xl"
-            priority
-          />
-        </div>
-
-        <h1
-          className="fade-up-2 relative z-10 text-4xl sm:text-5xl md:text-6xl font-bold uppercase tracking-widest leading-tight"
-          style={{ fontFamily: "var(--font-rajdhani)", color: "#f0f8ff" }}
-        >
-          Train with <span style={{ color: "#00b4ff" }}>Purpose</span>
-          <br />in Hawaii
-        </h1>
-        <p
-          className="fade-up-3 relative z-10 mt-4 max-w-xl text-base sm:text-lg tracking-wider"
-          style={{ color: "#8aa0b8", fontFamily: "var(--font-barlow)" }}
-        >
-          New Hope Jiu-Jitsu Hawaii — real skills for all ages and skill levels.
-          <br />Every class is free. All are welcome.
-        </p>
-        <div className="fade-up-3 relative z-10 flex flex-col sm:flex-row gap-4 mt-8">
-          <a
-            href="#contact"
-            className="glow-pulse px-8 py-3 rounded-full font-bold tracking-widest uppercase text-sm transition-all hover:brightness-110"
-            style={{ background: "linear-gradient(135deg,#00b4ff,#0066cc)", color: "#fff", fontFamily: "var(--font-barlow)" }}
-          >
-            Try a Free Class
-          </a>
-          <a
-            href="#schedule"
-            className="px-8 py-3 rounded-full font-bold tracking-widest uppercase text-sm transition-all hover:bg-white/10"
-            style={{ border: "1px solid rgba(0,180,255,0.4)", color: "#00b4ff", fontFamily: "var(--font-barlow)" }}
-          >
-            View Schedule
-          </a>
-        </div>
-
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-40">
-          <div className="w-px h-8" style={{ background: "linear-gradient(to bottom, transparent, #00b4ff)" }} />
-          <span className="text-xs tracking-widest uppercase" style={{ color: "#00b4ff", fontFamily: "var(--font-barlow)" }}>Scroll</span>
-        </div>
-      </section>
-
-      {/* PILLARS */}
-      <section id="pillars" className="py-24 px-6 max-w-6xl mx-auto">
-        <p className="text-center text-xs tracking-[0.3em] uppercase mb-3 font-semibold" style={{ color: "#00b4ff", fontFamily: "var(--font-barlow)" }}>
-          What We Train
-        </p>
-        <h2 className="text-center text-3xl sm:text-4xl font-bold uppercase tracking-widest mb-14" style={{ fontFamily: "var(--font-rajdhani)", color: "#f0f8ff" }}>
-          The Four Pillars
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {pillars.map((p) => (
-            <div
-              key={p.title}
-              className="flex flex-col items-center text-center rounded-2xl p-7 gap-4 transition-transform hover:-translate-y-1"
-              style={{ background: "rgba(0,180,255,0.06)", border: "1px solid rgba(0,180,255,0.15)" }}
-            >
-              <div className="text-4xl">{p.icon}</div>
-              <h3 className="text-xl font-bold uppercase tracking-widest" style={{ fontFamily: "var(--font-rajdhani)", color: "#00b4ff" }}>
-                {p.title}
-              </h3>
-              <p className="text-sm leading-relaxed" style={{ color: "#8aa0b8", fontFamily: "var(--font-barlow)" }}>
-                {p.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <div className="w-full h-px" style={{ background: "linear-gradient(to right,transparent,rgba(0,180,255,0.3),transparent)" }} />
-
-      {/* ABOUT */}
-      <section id="about" className="py-24 px-6 max-w-4xl mx-auto text-center">
-        <p className="text-xs tracking-[0.3em] uppercase mb-3 font-semibold" style={{ color: "#00b4ff", fontFamily: "var(--font-barlow)" }}>
-          Our Story
-        </p>
-        <h2 className="text-3xl sm:text-4xl font-bold uppercase tracking-widest mb-8" style={{ fontFamily: "var(--font-rajdhani)", color: "#f0f8ff" }}>
-          New Hope Jiu-Jitsu Hawaii
-        </h2>
-        <p className="text-base sm:text-lg leading-relaxed mb-6" style={{ color: "#8aa0b8", fontFamily: "var(--font-barlow)" }}>
-          NHJJ Hawaii was built on a simple idea: Jiu-Jitsu should be accessible, purposeful, and rooted in community.
-          We welcome beginners and seasoned practitioners alike — no ego, no gatekeeping.
-          Just good training, good people, and skills that actually matter.
-        </p>
-        <p className="text-base sm:text-lg leading-relaxed" style={{ color: "#8aa0b8", fontFamily: "var(--font-barlow)" }}>
-          Based in Waipahu, Oahu, we train in the spirit of aloha — with intensity on the mat and warmth off of it.
-          All ages and skill levels welcome. Every class is free.
-        </p>
-      </section>
-
-      <div className="w-full h-px" style={{ background: "linear-gradient(to right,transparent,rgba(0,180,255,0.3),transparent)" }} />
-
-      {/* GALLERY */}
-      {galleryPhotos.length > 0 && (
-        <section id="gallery" className="py-24 px-6 max-w-6xl mx-auto">
-          <p className="text-center text-xs tracking-[0.3em] uppercase mb-3 font-semibold" style={{ color: "#00b4ff", fontFamily: "var(--font-barlow)" }}>
-            On the Mat
+      <section className="hero">
+        <div aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0, opacity: 0.025, backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")", backgroundSize: "200px 200px" }} />
+        <div style={{ position: "relative", zIndex: 1 }}>
+          <p className="text-label" style={{ marginBottom: "2rem", color: "var(--bone-3)" }}>
+            New Hope Jiu-Jitsu &middot; Waipahu, Oahu &middot; Sundays 2:30&ndash;4:30 PM
           </p>
-          <h2 className="text-center text-3xl sm:text-4xl font-bold uppercase tracking-widest mb-14" style={{ fontFamily: "var(--font-rajdhani)", color: "#f0f8ff" }}>
-            Our Community
-          </h2>
-          <div
-            className="grid gap-3"
-            style={{
-              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-              gridAutoRows: "240px",
-            }}
-          >
-            {galleryPhotos.map((photo, i) => (
-              <div
-                key={i}
-                className="relative rounded-xl overflow-hidden"
-                style={{
-                  gridRow: i % 5 === 0 ? "span 2" : "span 1",
-                  border: "1px solid rgba(0,180,255,0.12)",
-                }}
-              >
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  fill
-                  className="object-cover transition-transform duration-500 hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-                <div
-                  className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300"
-                  style={{ background: "linear-gradient(to top, rgba(0,180,255,0.15), transparent)" }}
-                />
-              </div>
-            ))}
+          <h1 className="text-hero" style={{ color: "var(--bone)", maxWidth: "20ch" }}>
+            A Sunday
+            <br />ministry
+            <br />
+            <span style={{ color: "var(--bone-2)" }}>on the mat.</span>
+          </h1>
+          <p style={{ fontFamily: "var(--font-barlow)", fontSize: "clamp(0.75rem,1.1vw,0.9rem)", fontWeight: 300, letterSpacing: "0.1em", color: "var(--bone-3)", marginTop: "1.75rem", textTransform: "uppercase" }}>
+            Every class is free &middot; All ages &middot; All skill levels
+          </p>
+          <div style={{ display: "flex", gap: "2rem", marginTop: "2.25rem", flexWrap: "wrap" }}>
+            <a href="#this-sunday" className="link-primary">This Sunday &darr;</a>
+            <a href={`https://instagram.com/${INSTAGRAM}`} target="_blank" rel="noopener noreferrer" className="link-accent">
+              Instagram &rarr;
+            </a>
           </div>
+        </div>
+      </section>
+
+      {/* THIS SUNDAY */}
+      <SundayStatus />
+
+      {/* FOUR CHAPTERS */}
+      {chapters.map((c, i) => (
+        <section key={c.pillar} className="chapter-section">
+          <Reveal>
+            <p className="text-label" style={{ marginBottom: "0.75rem" }}>
+              {c.n}&nbsp;&nbsp;&mdash;&nbsp;&nbsp;{c.state}
+            </p>
+          </Reveal>
+          <Reveal delay={1}>
+            <h2 className="text-chapter" style={{ color: "var(--bone)" }}>{c.pillar}</h2>
+          </Reveal>
+          <Reveal delay={2}>
+            <p className="text-body" style={{ maxWidth: "34rem", marginTop: "1.5rem" }}>{c.desc}</p>
+          </Reveal>
+          {i < chapters.length - 1 && (
+            <div style={{ height: "1px", background: "var(--rule)", marginTop: "clamp(3rem,6vw,5rem)" }} />
+          )}
         </section>
-      )}
+      ))}
 
-      <div className="w-full h-px" style={{ background: "linear-gradient(to right,transparent,rgba(0,180,255,0.3),transparent)" }} />
-
-      {/* SCHEDULE */}
-      <section id="schedule" className="py-24 px-6 max-w-3xl mx-auto">
-        <p className="text-center text-xs tracking-[0.3em] uppercase mb-3 font-semibold" style={{ color: "#00b4ff", fontFamily: "var(--font-barlow)" }}>
-          Class Times
-        </p>
-        <h2 className="text-center text-3xl sm:text-4xl font-bold uppercase tracking-widest mb-14" style={{ fontFamily: "var(--font-rajdhani)", color: "#f0f8ff" }}>
-          Weekly Schedule
-        </h2>
-
-        {/* Single class card */}
-        <div
-          className="rounded-2xl p-10 text-center"
-          style={{ background: "rgba(0,180,255,0.07)", border: "1px solid rgba(0,180,255,0.2)" }}
-        >
-          <h3 className="text-2xl font-bold uppercase tracking-widest mb-3" style={{ fontFamily: "var(--font-rajdhani)", color: "#00b4ff" }}>
-            Sundays
-          </h3>
-          <p className="text-5xl font-bold tracking-tight mb-6" style={{ fontFamily: "var(--font-rajdhani)", color: "#f0f8ff" }}>
-            2:30 – 4:30 PM
-          </p>
-          <div className="w-16 h-px mx-auto mb-6" style={{ background: "rgba(0,180,255,0.4)" }} />
-          <p className="text-sm tracking-wider mb-2" style={{ color: "#c8dff0", fontFamily: "var(--font-barlow)" }}>
-            New Hope Kapolei Ministry Center
-          </p>
-          <p className="text-sm tracking-wider mb-6" style={{ color: "#8aa0b8", fontFamily: "var(--font-barlow)" }}>
-            94-199 Leonui St #4 · Waipahu, HI 96797
-          </p>
-          <div
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold tracking-widest uppercase"
-            style={{ background: "rgba(0,180,255,0.12)", border: "1px solid rgba(0,180,255,0.25)", color: "#00b4ff", fontFamily: "var(--font-barlow)" }}
-          >
-            Free for newcomers · All ages & skill levels welcome
-          </div>
+      {/* MINISTRY */}
+      <section className="section-pad" style={{ borderTop: "1px solid var(--rule)", borderBottom: "1px solid var(--rule)" }}>
+        <div style={{ maxWidth: "42rem" }}>
+          <Reveal>
+            <p className="text-label" style={{ marginBottom: "1.5rem" }}>About</p>
+          </Reveal>
+          <Reveal delay={1}>
+            <h2 className="font-display" style={{ fontSize: "clamp(2.25rem,5vw,3.75rem)", lineHeight: 0.95, color: "var(--bone)", marginBottom: "1.75rem" }}>
+              A ministry,
+              <br />
+              <span style={{ color: "var(--bone-2)" }}>not a gym.</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={2}>
+            <p className="text-body" style={{ marginBottom: "1rem" }}>
+              We gather on Sunday afternoons at New Hope Kapolei Ministry Center in Waipahu.
+              Jiu-jitsu is the practice. Fellowship is the point.
+            </p>
+            <p className="text-body">
+              Every class is free. No membership, no contracts, no prior experience needed.
+              We welcome everyone. Intensity on the mat, warmth off it.
+            </p>
+          </Reveal>
         </div>
-
-        <a
-          href="https://maps.google.com/?q=94-199+Leonui+St+%234,+Waipahu,+HI+96797"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 mt-6 text-xs tracking-widest uppercase font-semibold transition-colors hover:text-white"
-          style={{ color: "#8aa0b8", fontFamily: "var(--font-barlow)" }}
-        >
-          <span>📍</span> Get Directions
-        </a>
       </section>
 
-      {/* CONTACT / CTA */}
-      <section
-        id="contact"
-        className="py-24 px-6 text-center"
-        style={{ background: "linear-gradient(180deg,rgba(0,180,255,0.04) 0%,rgba(0,100,200,0.08) 100%)" }}
-      >
-        <p className="text-xs tracking-[0.3em] uppercase mb-3 font-semibold" style={{ color: "#00b4ff", fontFamily: "var(--font-barlow)" }}>
-          Get Started
-        </p>
-        <h2 className="text-3xl sm:text-5xl font-bold uppercase tracking-widest mb-6" style={{ fontFamily: "var(--font-rajdhani)", color: "#f0f8ff" }}>
-          Every Class is <span style={{ color: "#00b4ff" }}>Free</span>
-        </h2>
-        <p className="max-w-xl mx-auto text-base sm:text-lg mb-10" style={{ color: "#8aa0b8", fontFamily: "var(--font-barlow)" }}>
-          No experience needed. Just show up ready to learn.
-          Every class is free — just show up. Sundays 2:30–4:30 PM in Waipahu.
-        </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-6 text-sm font-semibold tracking-widest uppercase" style={{ fontFamily: "var(--font-barlow)" }}>
-          <a
-            href="mailto:info@nhjjhawaii.com"
-            className="glow-pulse px-10 py-4 rounded-full transition-all hover:brightness-110"
-            style={{ background: "linear-gradient(135deg,#00b4ff,#0066cc)", color: "#fff" }}
-          >
-            Email Us
-          </a>
-          <a
-            href="https://www.instagram.com/nhjjhawaii"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-10 py-4 rounded-full transition-all hover:bg-white/10"
-            style={{ border: "1px solid rgba(0,180,255,0.4)", color: "#00b4ff" }}
-          >
-            @nhjjhawaii
-          </a>
+      {/* VISIT */}
+      <section id="visit" className="section-pad">
+        <Reveal>
+          <p className="text-label" style={{ marginBottom: "3rem" }}>Visit</p>
+        </Reveal>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "clamp(2rem,5vw,4rem)", maxWidth: "56rem" }}>
+          <Reveal delay={1}>
+            <p className="text-label" style={{ marginBottom: "0.6rem" }}>When</p>
+            <p className="font-display" style={{ fontSize: "clamp(2rem,4.5vw,3.25rem)", color: "var(--bone)", lineHeight: 1, marginBottom: "0.35rem" }}>Sundays</p>
+            <p className="font-display" style={{ fontSize: "clamp(1.4rem,3vw,2.25rem)", color: "var(--bone-2)", lineHeight: 1 }}>2:30&ndash;4:30 PM</p>
+          </Reveal>
+          <Reveal delay={2}>
+            <p className="text-label" style={{ marginBottom: "0.6rem" }}>Where</p>
+            <p style={{ fontFamily: "var(--font-barlow)", fontSize: "clamp(0.9rem,1.3vw,1.05rem)", fontWeight: 300, lineHeight: 1.75, color: "var(--bone)", marginBottom: "1rem" }}>
+              New Hope Kapolei Ministry Center<br />
+              94-199 Leonui St #4<br />
+              Waipahu, HI 96797
+            </p>
+            <a href="https://maps.google.com/?q=94-199+Leonui+St+%234,+Waipahu,+HI+96797" target="_blank" rel="noopener noreferrer" className="link-primary">
+              Get directions &rarr;
+            </a>
+          </Reveal>
+          <Reveal delay={3}>
+            <p className="text-label" style={{ marginBottom: "0.6rem" }}>What to bring</p>
+            <p style={{ fontFamily: "var(--font-barlow)", fontSize: "clamp(0.9rem,1.3vw,1.05rem)", fontWeight: 300, lineHeight: 1.8, color: "var(--bone-2)" }}>
+              Just yourself.<br />
+              Wear comfortable clothes.<br />
+              No gi required.<br />
+              No experience needed.
+            </p>
+          </Reveal>
         </div>
-        <p className="mt-10 text-xs tracking-wider" style={{ color: "#8aa0b8", fontFamily: "var(--font-barlow)" }}>
-          Hawaii · Awareness · Movement · Jujitsu · Self-Defense
-        </p>
       </section>
 
       {/* FOOTER */}
-      <footer className="py-8 px-6" style={{ background: "#030608", borderTop: "1px solid rgba(0,180,255,0.08)" }}>
-        <div className="flex flex-col sm:flex-row items-center justify-between max-w-5xl mx-auto gap-4">
-          <div className="flex items-center gap-3">
-            <Image src="/nhjj-icon.png" alt="NHJJ Hawaii" width={28} height={28} className="rounded-full opacity-80" />
-            <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "#8aa0b8", fontFamily: "var(--font-barlow)" }}>
-              NHJJ Hawaii
-            </span>
+      <footer style={{ borderTop: "1px solid var(--rule)", padding: "clamp(2.5rem,5vw,4rem) clamp(1.5rem,5vw,4rem)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))", gap: "2rem 3rem" }}>
+        <div>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.75rem" }}>
+            <Image src="/nhjj-icon.png" alt="NHJJ Hawaii" width={22} height={22} style={{ borderRadius: "50%", opacity: 0.6 }} />
+            <span className="text-label" style={{ color: "var(--bone)" }}>NHJJ Hawaii</span>
           </div>
-          <p className="text-xs tracking-wider text-center" style={{ color: "#8aa0b8", fontFamily: "var(--font-barlow)" }}>
-            &copy; {new Date().getFullYear()} New Hope Jiu-Jitsu Hawaii · 94-199 Leonui St #4, Waipahu, HI 96797
+          <p className="text-meta">&copy; {new Date().getFullYear()} New Hope Jiu-Jitsu Hawaii</p>
+        </div>
+        <div>
+          <p className="text-label" style={{ marginBottom: "0.75rem" }}>Connect</p>
+          <a href={`https://instagram.com/${INSTAGRAM}`} target="_blank" rel="noopener noreferrer" className="link-accent" style={{ display: "block", marginBottom: "0.6rem", width: "fit-content" }}>
+            @{INSTAGRAM}
+          </a>
+          <p className="text-meta">{EMAIL_TODO}</p>
+        </div>
+        <div>
+          <p className="text-label" style={{ marginBottom: "0.75rem" }}>Find us</p>
+          <p className="text-meta" style={{ lineHeight: 1.9 }}>
+            Sundays &middot; 2:30&ndash;4:30 PM<br />
+            94-199 Leonui St #4<br />
+            Waipahu, HI 96797
           </p>
-          <div className="flex gap-6 text-xs tracking-widest uppercase" style={{ color: "#8aa0b8", fontFamily: "var(--font-barlow)" }}>
-            <a href="#pillars" className="hover:text-white transition-colors">Pillars</a>
-            <a href="#schedule" className="hover:text-white transition-colors">Schedule</a>
-            <a href="#contact" className="hover:text-white transition-colors">Contact</a>
-          </div>
+        </div>
+        <div>
+          <p className="text-label" style={{ marginBottom: "0.75rem" }}>Pillars</p>
+          <p className="text-meta" style={{ lineHeight: 2.1 }}>
+            Awareness<br />Movement<br />Jujitsu<br />Self-Defense
+          </p>
         </div>
       </footer>
+
+      {/* MOBILE STICKY BAR */}
+      <div className="sticky-bar">
+        <div>
+          <p className="text-label" style={{ color: "var(--bone)", marginBottom: "1px" }}>This Sunday</p>
+          <p className="text-meta">2:30 PM &middot; Waipahu</p>
+        </div>
+        <a href="https://maps.google.com/?q=94-199+Leonui+St+%234,+Waipahu,+HI+96797" target="_blank" rel="noopener noreferrer" className="link-primary" style={{ flexShrink: 0 }}>
+          Directions &rarr;
+        </a>
+      </div>
     </>
-  );
+  )
 }
