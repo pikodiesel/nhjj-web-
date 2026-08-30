@@ -21,14 +21,15 @@ function SundayBlock() {
     <section
       id="this-sunday"
       className="section-pad"
-      style={{ borderTop: "2px solid var(--bone-3)", background: "#12100e" }}
+      style={{ borderTop: "1px solid var(--accent)", background: "var(--ink-2)" }}
     >
       <Reveal>
-        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", flexWrap: "wrap", gap: "0.75rem", marginBottom: "clamp(0.75rem,2vw,1.25rem)" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", marginBottom: "clamp(0.75rem,2vw,1.25rem)" }}>
           <p className="text-label">This Sunday</p>
-          <p className="text-label" style={{ color: isOn ? "var(--bone)" : "var(--accent)" }}>
+          <span className={isOn ? "status-chip" : "status-chip off"}>
+            {isOn && <span className="status-dot" aria-hidden />}
             {isOn ? "Class is on" : status === "cancelled" ? "Cancelled" : "No class"}
-          </p>
+          </span>
         </div>
       </Reveal>
 
@@ -60,8 +61,8 @@ function SundayBlock() {
             ) : (
               <p className="text-body">
                 {status === "cancelled"
-                  ? "No class this week. See you next Sunday."
-                  : "No class scheduled. Check Instagram for the next date."}
+                  ? "No class this Sunday. See you next week."
+                  : "No class this Sunday. Check Instagram for the next date."}
               </p>
             )}
           </div>
@@ -98,16 +99,16 @@ export default function Home() {
       {/* HERO — type left, real photo right */}
       <section className="hero">
         <div className="hero-copy">
-          <p className="text-label" style={{ marginBottom: "1.5rem", color: "var(--bone-3)" }}>
-            New Hope Jiu-Jitsu &middot; Waipahu, Oahu
-          </p>
           <h1 className="text-hero" style={{ color: "var(--bone)" }}>
-            A Sunday
-            <br />ministry
-            <br /><span style={{ color: "var(--bone-2)" }}>on the mat.</span>
+            New Hope
+            <br />Jiu-Jitsu
+            <br /><span style={{ color: "var(--accent)" }}>Hawaii</span>
           </h1>
-          <p style={{ fontFamily: "var(--font-barlow)", fontSize: "clamp(0.75rem,1.1vw,0.9rem)", fontWeight: 300, letterSpacing: "0.1em", color: "var(--bone-3)", marginTop: "1.4rem", textTransform: "uppercase" }}>
-            Sundays 2:30&ndash;4:30 PM &middot; Every class is free &middot; All ages
+          <p className="hero-pillars" style={{ marginTop: "1.5rem" }}>
+            Awareness &middot; Movement &middot; Jujitsu &middot; Self-Defense
+          </p>
+          <p style={{ fontFamily: "var(--font-barlow)", fontSize: "clamp(0.75rem,1.1vw,0.9rem)", fontWeight: 300, letterSpacing: "0.1em", color: "var(--bone-3)", marginTop: "0.9rem", textTransform: "uppercase" }}>
+            Sundays 2:30&ndash;4:30 PM &middot; Waipahu &middot; Free &middot; All ages
           </p>
           <div style={{ display: "flex", gap: "2rem", marginTop: "1.75rem", flexWrap: "wrap" }}>
             <a href="#this-sunday" className="link-primary">This Sunday &darr;</a>
@@ -152,13 +153,13 @@ export default function Home() {
             </Reveal>
             <Reveal delay={1}>
               <h2 className="font-display" style={{ fontSize: "clamp(2.25rem,5vw,3.5rem)", lineHeight: 0.95, color: "var(--bone)", marginBottom: "1.5rem" }}>
-                A ministry,
-                <br /><span style={{ color: "var(--bone-2)" }}>not a gym.</span>
+                Free,
+                <br /><span style={{ color: "var(--bone-2)" }}>every Sunday.</span>
               </h2>
             </Reveal>
             <Reveal delay={2}>
               <p className="text-body" style={{ marginBottom: "0.9rem" }}>
-                We gather on Sunday afternoons at New Hope Kapolei Ministry Center in Waipahu.
+                We train Sunday afternoons at New Hope Kapolei Ministry Center in Waipahu.
                 Jiu-jitsu is the practice. Fellowship is the point.
               </p>
               <p className="text-body">
@@ -174,7 +175,7 @@ export default function Home() {
                 alt="The Sunday class gathered together after training"
                 fill
                 sizes="(max-width: 720px) 100vw, 45vw"
-                style={{ objectFit: "cover", filter: "grayscale(80%) brightness(0.78) contrast(1.05)" }}
+                style={{ objectFit: "cover", filter: "grayscale(45%) saturate(0.9) brightness(0.82) contrast(1.03)" }}
               />
             </div>
           </Reveal>
