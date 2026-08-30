@@ -87,6 +87,18 @@ body {
   .reveal { opacity: 1; transform: none; transition: none; }
 }
 
+/* ── STATE SCROLL ANIMATION ──────────────────────────────────────────────── */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(0.5em); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.state-word {
+  animation: slideUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .state-word { animation: none; }
+}
+
 /* ── LINKS ───────────────────────────────────────────────────────────────── */
 .link-primary {
   display: inline-flex;
@@ -145,21 +157,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: clamp(6rem, 10vw, 8rem) clamp(1.5rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem);
-  background: radial-gradient(ellipse at 40% 50%, #141210 0%, var(--ink) 70%);
+  padding: clamp(5rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem) clamp(3rem, 5vw, 4.5rem);
+  background: var(--ink);
   overflow: hidden;
 }
 
 /* ── SECTION PADDING ─────────────────────────────────────────────────────── */
-.section-pad { padding: clamp(5rem, 9vw, 8rem) clamp(1.5rem, 5vw, 4rem); }
-
-/* ── SUNDAY BLOCK ────────────────────────────────────────────────────────── */
-.sunday-card {
-  border: 1px solid var(--rule);
-  border-top: 1px solid var(--bone-3);
-  padding: clamp(2rem, 4vw, 3.5rem);
-  max-width: 52rem;
-}
+.section-pad { padding: clamp(3.5rem, 7vw, 6rem) clamp(1.5rem, 5vw, 4rem); }
 
 /* ── CHAPTER ─────────────────────────────────────────────────────────────── */
 .chapter-section {
