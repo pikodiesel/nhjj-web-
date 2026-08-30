@@ -1,5 +1,10 @@
 import Image from "next/image";
 
+// Drop photos into public/gallery/ and add filenames here
+const galleryPhotos: { src: string; alt: string }[] = [
+  // { src: "/gallery/photo1.jpg", alt: "Class in action" },
+];
+
 const pillars = [
   {
     title: "Awareness",
@@ -165,6 +170,50 @@ export default function Home() {
           All ages and skill levels welcome. Your first class is free.
         </p>
       </section>
+
+      <div className="w-full h-px" style={{ background: "linear-gradient(to right,transparent,rgba(0,180,255,0.3),transparent)" }} />
+
+      {/* GALLERY */}
+      {galleryPhotos.length > 0 && (
+        <section id="gallery" className="py-24 px-6 max-w-6xl mx-auto">
+          <p className="text-center text-xs tracking-[0.3em] uppercase mb-3 font-semibold" style={{ color: "#00b4ff", fontFamily: "var(--font-barlow)" }}>
+            On the Mat
+          </p>
+          <h2 className="text-center text-3xl sm:text-4xl font-bold uppercase tracking-widest mb-14" style={{ fontFamily: "var(--font-rajdhani)", color: "#f0f8ff" }}>
+            Our Community
+          </h2>
+          <div
+            className="grid gap-3"
+            style={{
+              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+              gridAutoRows: "240px",
+            }}
+          >
+            {galleryPhotos.map((photo, i) => (
+              <div
+                key={i}
+                className="relative rounded-xl overflow-hidden"
+                style={{
+                  gridRow: i % 5 === 0 ? "span 2" : "span 1",
+                  border: "1px solid rgba(0,180,255,0.12)",
+                }}
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  className="object-cover transition-transform duration-500 hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+                <div
+                  className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: "linear-gradient(to top, rgba(0,180,255,0.15), transparent)" }}
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       <div className="w-full h-px" style={{ background: "linear-gradient(to right,transparent,rgba(0,180,255,0.3),transparent)" }} />
 
