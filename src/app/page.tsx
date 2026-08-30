@@ -115,7 +115,7 @@ export default function Home() {
         <div className="hero-grain" aria-hidden style={{ backgroundImage: GRAIN }} />
 
         <div className="hero-stack">
-          <p className="hero-word hero-word--lead" aria-hidden>Free</p>
+          <p className="hero-word" aria-hidden>Jiu-Jitsu</p>
 
           {/* The logo carries the name, so the h1 is visually hidden text */}
           <h1 style={{ margin: 0, lineHeight: 0 }}>
