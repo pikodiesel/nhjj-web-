@@ -9,9 +9,9 @@
   --bone:     #f4f1ea;
   --bone-2:   #a9a4ad;  /* body copy */
   --bone-3:   #7d7987;  /* labels, meta */
-  --accent:   #10dec5;  /* mint */
+  --accent:   #0099ff;  /* electric blue */
   --violet:   #9e36e0;  /* counter-light, washes only — never type */
-  --rule:     rgba(16,222,197,0.22);
+  --rule:     rgba(0,153,255,0.22);
 }
 
 /* ── BASE ────────────────────────────────────────────────────────────────── */
@@ -215,7 +215,7 @@ body {
   z-index: 1;
   mix-blend-mode: screen;
   background:
-    radial-gradient(50% 46% at 14% 20%, rgba(16,222,197,0.26), transparent 72%),
+    radial-gradient(50% 46% at 14% 20%, rgba(0,153,255,0.28), transparent 72%),
     radial-gradient(52% 48% at 88% 70%, rgba(158,54,224,0.44), transparent 72%),
     radial-gradient(70% 50% at 52% 108%, rgba(41,121,255,0.24), transparent 70%);
 }
@@ -256,9 +256,12 @@ body {
   font-size: clamp(2.5rem, min(27vw, 23vh), 18rem);
   line-height: 0.78;
   letter-spacing: -0.02em;
-  color: var(--accent);
+  background: linear-gradient(180deg, #7dd8ff 0%, #005ce6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   white-space: nowrap;
-  text-shadow: 0 0 60px rgba(16, 222, 197, 0.28);
+  filter: drop-shadow(0 0 50px rgba(0, 120, 255, 0.32));
 }
 
 .hero-logo {
@@ -312,13 +315,13 @@ body {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(48% 60% at 6% 0%, rgba(16,222,197,0.14), transparent 68%),
+    radial-gradient(48% 60% at 6% 0%, rgba(0,153,255,0.14), transparent 68%),
     radial-gradient(46% 62% at 96% 88%, rgba(158,54,224,0.16), transparent 70%);
 }
 .glow-violet::before {
   background:
     radial-gradient(50% 62% at 92% 8%, rgba(158,54,224,0.17), transparent 70%),
-    radial-gradient(44% 58% at 4% 92%, rgba(16,222,197,0.11), transparent 68%);
+    radial-gradient(44% 58% at 4% 92%, rgba(0,153,255,0.11), transparent 68%);
 }
 
 /* ── BRAND BANNER BAND ───────────────────────────────────────────────────── */
