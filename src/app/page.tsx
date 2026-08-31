@@ -248,14 +248,31 @@ export default function Home() {
             </Reveal>
           </div>
           <Reveal delay={2}>
-            <div style={{ position: "relative", aspectRatio: "3 / 2", overflow: "hidden", border: "1px solid var(--rule)" }}>
-              <Image
-                src="/gallery/DSC_2939.JPG"
-                alt="The Sunday class gathered together after training"
-                fill
-                sizes="(max-width: 720px) 100vw, 45vw"
-                style={{ objectFit: "cover", filter: "grayscale(45%) saturate(0.9) brightness(0.82) contrast(1.03)" }}
-              />
+            <div style={{ display: "flex", flexDirection: "column", gap: "clamp(0.75rem,2vw,1.25rem)" }}>
+              <div>
+                <div style={{ position: "relative", aspectRatio: "3 / 2", overflow: "hidden", border: "1px solid var(--rule)" }}>
+                  <Image
+                    src="/gallery/82926 class.jpeg"
+                    alt="Sunday class on August 30, 2026 — kids and adults holding the Training for Eternity banner in Waipahu"
+                    fill
+                    sizes="(max-width: 720px) 100vw, 45vw"
+                    style={{ objectFit: "cover", objectPosition: "50% 38%", filter: "brightness(0.88) contrast(1.06) saturate(0.92)" }}
+                  />
+                </div>
+                <div style={{ marginTop: "0.55rem" }}>
+                  <p className="text-meta" style={{ color: "var(--bone-3)" }}>August 30, 2026 · Sunday class, Waipahu</p>
+                  <p className="text-meta" style={{ color: "var(--bone-2)", marginTop: "0.2rem", letterSpacing: "0.08em", textTransform: "none" }}>Come as you are. Every Sunday.</p>
+                </div>
+              </div>
+              <div style={{ position: "relative", aspectRatio: "3 / 2", overflow: "hidden", border: "1px solid var(--rule)" }}>
+                <Image
+                  src="/gallery/DSC_2939.JPG"
+                  alt="The Sunday class gathered together after training"
+                  fill
+                  sizes="(max-width: 720px) 100vw, 45vw"
+                  style={{ objectFit: "cover", filter: "grayscale(45%) saturate(0.9) brightness(0.82) contrast(1.03)" }}
+                />
+              </div>
             </div>
           </Reveal>
         </div>
