@@ -115,31 +115,19 @@ export default function Home() {
         <div className="hero-grain" aria-hidden style={{ backgroundImage: GRAIN }} />
 
         <div className="hero-stack">
-          <p className="hero-word" aria-hidden>Jiu-Jitsu</p>
-
-          {/* The logo carries the name, so the h1 is visually hidden text */}
-          <h1 style={{ margin: 0, lineHeight: 0 }}>
+          <h1 style={{ width: "clamp(220px, 65vw, 720px)", margin: 0, lineHeight: 0, mixBlendMode: "screen" }}>
             <Image
-              className="hero-logo"
-              src="/nhjj-logo.png"
+              src="/nhjj-banner.png"
               alt="NHJJ Hawaii — New Hope Jiu-Jitsu"
-              width={1264}
-              height={1264}
+              width={1200}
+              height={480}
               priority
+              style={{ width: "100%", height: "auto" }}
             />
           </h1>
 
+          <p className="hero-word" aria-hidden>Jiu-Jitsu</p>
           <p className="hero-word" aria-hidden>Sundays</p>
-        </div>
-
-        <div className="hero-meta">
-          <span style={{ color: "var(--accent)", fontWeight: 600 }}>Always free</span>
-          <span style={{ color: "var(--accent)" }}>&bull;</span>
-          <span>2:30&ndash;4:30 PM</span>
-          <span style={{ color: "var(--accent)" }}>&bull;</span>
-          <span>Waipahu, Oahu</span>
-          <span style={{ color: "var(--accent)" }}>&bull;</span>
-          <span>All ages, no experience</span>
         </div>
       </section>
 
@@ -309,16 +297,6 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
-
-      {/* BRAND BAND — the banner lockup, full bleed, as the sign-off */}
-      <div className="banner-band">
-        <Image
-          src="/nhjj-banner.png"
-          alt="NHJJ Hawaii — Awareness, Movement, Jujitsu, Self-Defense"
-          fill
-          sizes="100vw"
-        />
-      </div>
 
       {/* FOOTER */}
       <footer style={{ borderTop: "1px solid var(--rule)", padding: "clamp(2.25rem,4vw,3.25rem) clamp(1.5rem,5vw,4rem) clamp(5rem,6vw,3.25rem)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(170px,1fr))", gap: "1.75rem 3rem" }}>
