@@ -99,7 +99,18 @@ export default function Home() {
         <a href="#this-sunday" className="link-primary">This Sunday &darr;</a>
       </nav>
 
-      {/* HERO — photo, coloured light, oversized type, logo on top */}
+      {/* BANNER BAND — brand lockup at the very top */}
+      <div className="banner-band">
+        <Image
+          src="/nhjj-banner.png"
+          alt="NHJJ Hawaii — New Hope Jiu-Jitsu"
+          fill
+          priority
+          sizes="100vw"
+        />
+      </div>
+
+      {/* HERO — photo, coloured light, oversized type */}
       <section className="hero">
         <div className="hero-photo">
           <Image
@@ -115,17 +126,7 @@ export default function Home() {
         <div className="hero-grain" aria-hidden style={{ backgroundImage: GRAIN }} />
 
         <div className="hero-stack">
-          <h1 style={{ width: "clamp(220px, 65vw, 720px)", margin: 0, lineHeight: 0, mixBlendMode: "screen" }}>
-            <Image
-              src="/nhjj-banner.png"
-              alt="NHJJ Hawaii — New Hope Jiu-Jitsu"
-              width={1200}
-              height={480}
-              priority
-              style={{ width: "100%", height: "auto" }}
-            />
-          </h1>
-
+          <h1 className="sr-only">NHJJ Hawaii — New Hope Jiu-Jitsu</h1>
           <p className="hero-word" aria-hidden>Jiu-Jitsu</p>
           <p className="hero-word" aria-hidden>Sundays</p>
         </div>
