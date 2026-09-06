@@ -1,8 +1,8 @@
 ---
-date: 2026-08-30
-status: on
-teaching: Ground confidence — getting comfortable where others aren't.
-note: Wear comfortable clothes. No gi required.
+date: 2026-09-06
+status: no-class
+teaching:
+note: No class September 6 or 13. Back on September 20 — see you then.
 ---
 
 Edit the four lines between the --- markers above, save, and push.
