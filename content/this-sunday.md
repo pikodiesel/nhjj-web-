@@ -1,8 +1,8 @@
 ---
-date: 2026-09-06
-status: no-class
-teaching:
-note: No class September 6 or 13. Back on September 20 — see you then.
+date: 2026-09-20
+status: on
+teaching: Come join us — we're back on the mat.
+note: Wear comfortable clothes. No gi required. All ages welcome.
 ---
 
 Edit the four lines between the --- markers above, save, and push.
