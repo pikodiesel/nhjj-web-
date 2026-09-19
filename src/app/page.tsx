@@ -315,6 +315,12 @@ export default function Home() {
           </a>
         </div>
         <div>
+          <p className="text-label" style={{ marginBottom: "0.7rem" }}>Contact</p>
+          <a href="mailto:nhjjoahu@gmail.com" className="link-accent" style={{ width: "fit-content" }}>
+            nhjjoahu@gmail.com
+          </a>
+        </div>
+        <div>
           <p className="text-label" style={{ marginBottom: "0.7rem" }}>Find us</p>
           <p className="text-meta" style={{ lineHeight: 1.85 }}>
             Sundays &middot; 2:30&ndash;4:30 PM<br />
