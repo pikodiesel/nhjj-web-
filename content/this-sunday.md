@@ -1,8 +1,8 @@
 ---
-date: 2026-09-20
+date: 2026-09-27
 status: on
-teaching: Come join us — we're back on the mat.
-note: Wear comfortable clothes. No gi required. All ages welcome.
+teaching: Come join us — all ages, all levels, no experience needed.
+note: Wear comfortable clothes. No gi required.
 ---
 
 Edit the four lines between the --- markers above, save, and push.
