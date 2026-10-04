@@ -1,5 +1,5 @@
 ---
-date: 2026-09-27
+date: 2026-10-04
 status: on
 teaching: Come join us — all ages, all levels, no experience needed.
 note: Setup starts at 2:00 — come early, help out, and catch up. We love the fellowship before class. Training starts at 2:30. Wear comfortable clothes, no gi required.
